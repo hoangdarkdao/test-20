@@ -12,7 +12,7 @@ from pathlib import Path
 # CHỈ CẦN SỬA 2 DÒNG NÀY MỖI LẦN CHẠY
 # ===================================================================
 INPUT_JSON_FILES = [
-    "reevo/bitsp/v2/samples_1~300.json",
+    "reevo/bitsp/v3/samples_1~300.json",
     #"eoh/bitsp/v1/samples_301~600.json",
 ]
 

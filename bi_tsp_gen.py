@@ -13,7 +13,7 @@ from pathlib import Path
 # ===================================================================
 INPUT_JSON_FILES = [
     "eoh/bitsp/v1/samples_1~300.json",
-    "eoh/bitsp/v1/samples_301~600.json",
+    #"eoh/bitsp/v1/samples_301~600.json",
 ]
 
 PROBLEM = "bi_tsp"  # chỉ hỗ trợ bi_kp trong file này

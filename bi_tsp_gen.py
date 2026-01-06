@@ -12,7 +12,7 @@ from pathlib import Path
 # CHỈ CẦN SỬA 2 DÒNG NÀY MỖI LẦN CHẠY
 # ===================================================================
 INPUT_JSON_FILES = [
-    "reevo/bitsp/v3/samples_1~300.json",
+    "reevo/bitsp/v1/samples_1~300.json",
     #"eoh/bitsp/v1/samples_301~600.json",
 ]
 
@@ -24,7 +24,7 @@ PROBLEM = "bi_tsp"  # chỉ hỗ trợ bi_kp trong file này
 CONFIG = {
     "bi_tsp":  {"eval": "llm4ad/task/optimization/bi_tsp_semo/evaluation.py",
                 "inst": "llm4ad/task/optimization/bi_tsp_semo/get_instance.py",
-                "sizes": [100], "n_inst": 4,  "ref": [1.1, 1.1]},
+                "sizes": [200], "n_inst": 4,  "ref": [1.1, 1.1]},
     "bi_kp":   {"eval": "llm4ad/task/optimization/bi_kp/evaluation.py",
                 "inst": "llm4ad/task/optimization/bi_kp/get_instance.py",
                 "sizes": [100], "n_inst": 10, "ref": [1.1, 1.1]},

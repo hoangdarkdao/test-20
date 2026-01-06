@@ -12,7 +12,7 @@ from pathlib import Path
 # CHỈ CẦN SỬA 2 DÒNG NÀY MỖI LẦN CHẠY
 # ===================================================================
 INPUT_JSON_FILES = [
-    "eoh/bitsp/v3/samples_1~300.json",
+    "reevo/bitsp/v3/samples_1~300.json",
     #"eoh/bitsp/v1/samples_301~600.json",
 ]
 
@@ -175,7 +175,7 @@ if __name__ == '__main__':
 
             if isinstance(score_for_size, list) and len(score_for_size) == 2:
                 hv, t = score_for_size
-                output_list.append({"score": [float(hv), float(t)]})
+                output_list.append({"score": [-float(hv), float(t)]})
             else:
                 # Bao gồm cả TIMEOUT, ERROR, hoặc không chạy
                 output_list.append({"score": None})

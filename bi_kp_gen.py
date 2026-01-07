@@ -11,7 +11,7 @@ from pathlib import Path
 # CHỈ CẦN SỬA 2 DÒNG NÀY MỖI LẦN CHẠY
 # ===================================================================
 INPUT_JSON_FILES = [
-    "reevo/bikp/v1/samples_1~300.json",
+    "reevo/bikp/v2/samples_1~300.json",
 ]
 
 

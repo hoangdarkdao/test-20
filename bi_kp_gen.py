@@ -11,8 +11,7 @@ from pathlib import Path
 # CHỈ CẦN SỬA 2 DÒNG NÀY MỖI LẦN CHẠY
 # ===================================================================
 INPUT_JSON_FILES = [
-    "eoh/bikp/v1/samples_1~300.json",
-    "eoh/bikp/v1/samples_301~600.json",
+    "eoh/bikp/v1/samples/samples_1~300.json",
 ]
 
 
@@ -27,7 +26,7 @@ CONFIG = {
                 "sizes": [100], "n_inst": 4,  "ref": [1.1, 1.1]},
     "bi_kp":   {"eval": "llm4ad/task/optimization/bi_kp/evaluation.py",
                 "inst": "llm4ad/task/optimization/bi_kp/get_instance.py",
-                "sizes": [200], "n_inst": 10, "ref": [1.1, 1.1]},
+                "sizes": [100], "n_inst": 10, "ref": [1.1, 1.1]},
     "bi_cvrp": {"eval": "llm4ad/task/optimization/bi_cvrp_semo/evaluation.py",
                 "inst": "llm4ad/task/optimization/bi_cvrp_semo/get_instance.py",
                 "sizes": [100], "n_inst": 5,  "ref": [1.1, 1.1]},
@@ -162,10 +161,32 @@ if __name__ == '__main__':
 
                 results.setdefault(hid, {})[ps] = score
 
-        # LƯU KẾT QUẢ
+        # LƯU KẾT QUẢ THEO CẤU TRÚC BẠN MUỐN: list các {"score": [hv, time]}
+        output_list = []
+        current_size = cfg["sizes"][0]  # 100 (int, giữ nguyên int)
+
+        for idx, entry in enumerate(data):
+            hid = idx + 1
+            if "program" not in entry or not entry["program"].strip():
+                # Nếu heuristic bị skip (không có program), vẫn thêm placeholder để giữ thứ tự
+                output_list.append({"score": None})
+                continue
+
+            # Lấy score đúng với key là int (current_size)
+            score_for_size = results.get(hid, {}).get(current_size, None)
+
+            if isinstance(score_for_size, list) and len(score_for_size) == 2:
+                hv, t = score_for_size
+                output_list.append({"score": [float(hv), float(t)]})
+            else:
+                # Bao gồm cả TIMEOUT, ERROR, hoặc không chạy
+                output_list.append({"score": None})
+
+        # Lưu file
         out = path.stem + f"_FAIR_{PROBLEM.upper()}.json"
         with open(out, "w", encoding="utf-8") as f:
-            json.dump(results, f, indent=4, ensure_ascii=False)
-        print(f"\nHOÀN TẤT → Đã lưu: {out}\n" + "-"*80)
+            json.dump(output_list, f, indent=4, ensure_ascii=False)
+        print(f"\nHOÀN TẤT → Đã lưu: {out} (danh sách {len(output_list)} heuristic)\n" + "-"*80)
+        
 
     print("TẤT CẢ XONG! BẠN ĐÃ CÓ KẾT QUẢ CÔNG BẰNG NHẤT!")

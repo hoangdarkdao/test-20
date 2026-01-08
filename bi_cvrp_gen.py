@@ -28,7 +28,7 @@ CONFIG = {
                 "sizes": [100], "n_inst": 10, "ref": [1.1, 1.1]},
     "bi_cvrp": {"eval": "llm4ad/task/optimization/bi_cvrp/evaluation.py",
                 "inst": "llm4ad/task/optimization/bi_cvrp/get_instance.py",
-                "sizes": [100], "n_inst": 5,  "ref": [1.1, 1.1]},
+                "sizes": [200], "n_inst": 5,  "ref": [1.1, 1.1]},
 }
 
 cfg = CONFIG[PROBLEM]

@@ -12,7 +12,6 @@ from pathlib import Path
 # ===================================================================
 INPUT_JSON_FILES = [
     "eoh/bicvrp/v1/samples_1~300.json",
-    "eoh/bicvrp/v1/samples_301~600.json",
 ]
 
 PROBLEM = "bi_cvrp"  # bi_tsp | bi_kp | bi_cvrp
@@ -29,7 +28,7 @@ CONFIG = {
                 "sizes": [100], "n_inst": 10, "ref": [1.1, 1.1]},
     "bi_cvrp": {"eval": "llm4ad/task/optimization/bi_cvrp/evaluation.py",
                 "inst": "llm4ad/task/optimization/bi_cvrp/get_instance.py",
-                "sizes": [200], "n_inst": 5,  "ref": [1.1, 1.1]},
+                "sizes": [100], "n_inst": 5,  "ref": [1.1, 1.1]},
 }
 
 cfg = CONFIG[PROBLEM]

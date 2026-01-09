@@ -12,7 +12,7 @@ from pathlib import Path
 # CHỈ CẦN SỬA 2 DÒNG NÀY MỖI LẦN CHẠY
 # ===================================================================
 INPUT_JSON_FILES = [
-    "reevo/tritsp/v1/samples_1~300.json",
+    "reevo/tritsp/v2/samples_1~300.json",
 ]
 
 PROBLEM = "tri_tsp"  # chỉ hỗ trợ bi_kp trong file này
